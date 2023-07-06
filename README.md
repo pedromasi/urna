@@ -1,0 +1,1 @@
+Projeto que simula uma urna eletrônica, feito utilizando JS, HTML, CSS, para praticar e aperfeiçoar as habilidades e conhecimento sobre essas linguagens/ferramentas
