@@ -1,3 +1,9 @@
+@keyframes pisca{
+    0% {opacity: 0.2;}
+    50%{opacity: 1;}
+    100%{opacity: 0.2;}
+}
+
 body{
     margin: 0;
     display: flex;
@@ -95,6 +101,22 @@ body{
     height: 50px;
 }
 
+.num{
+    display: inline-block;
+    width: 30px;
+    height: 40px;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 40px;
+    font-size: 25px;
+}
+
+.pisca{
+    animation-name: pisca;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+}
+
 .restoInfos{
     flex: 1;
     line-height: 30px;
@@ -102,6 +124,25 @@ body{
 
 .dir{
     width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.dir-img{
+    border: 1px solid black;
+    background-color: white;
+    text-align: center;
+    font-size: 14px;
+}
+
+.dir-img img{
+    width: 100%;
+}
+
+.dir-img.small{
+    width: 80%;
+    font-size: 12px;
 }
 
 .pBaixo{
