@@ -99,6 +99,7 @@ body{
 
 .numeros{
     height: 50px;
+    display: flex;
 }
 
 .num{
@@ -150,4 +151,9 @@ body{
     font-size: 13px;
     border-top: 2px solid #000;
     padding-left: 5px;
+}
+
+.aviso--grande{
+    font-size: 30px;
+    font-weight: bold;
 }
