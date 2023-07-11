@@ -7,10 +7,13 @@ let numeros = document.querySelector('.numeros');
 
 let etapaAtual = 0;
 let numero = '';
+let votoBranco = false;
 
 function startPhases(){
     let phase = phases[etapaAtual];
     let numeroHtml = '';
+    numero = '';
+    votoBranco = false;
 
     for(let i = 0; i<phase.numeros;i++){
         if(i === 0){
@@ -46,7 +49,11 @@ function atualizaInterface(){
 
         let fotosHtml = '';
         for(let i in candidato.fotos){
-            fotosHtml += `<div class="dir-img"><img src="images/${candidato.fotos[i].url}" alt="" />${candidato.fotos[i].legenda}</div>`;
+            if(candidato.fotos[i].small){
+                fotosHtml += `<div class="dir-img small"><img src="images/${candidato.fotos[i].url}" alt="" />${candidato.fotos[i].legenda}</div>`;
+            } else {
+                fotosHtml += `<div class="dir-img"><img src="images/${candidato.fotos[i].url}" alt="" />${candidato.fotos[i].legenda}</div>`;
+            }
         }
 
         lateral.innerHTML = fotosHtml;
@@ -75,15 +82,50 @@ function clicou(n){
 }
 
 function branco(){
-    alert("branco em");
+    if(numero === ''){
+        votoBranco = true;
+        seuVotoPara.style.display = 'block';
+        aviso.style.display = 'block';
+        numeros.innerHTML = '';
+        descricao.innerHTML = '<div class = "aviso--grande pisca">VOTO EM BRANCO</div>';
+    } else {
+        alert("Para votar em branco, não pode digitar nenhum número!")
+    }
 }
 
 function corrige(){
-    alert("corrige em");
+    startPhases();
+}
+
+function telaFim(){
+    seuVotoPara.style.display = 'none';
+    aCargo.innerHTML = '';
+    descricao.innerHTML = '';
+    aviso.style.display = 'none';
+    lateral.innerHTML = '';
+    numeros.innerHTML = '';
+
+    document.querySelector('.tela').innerHTML = '<div class = "fim">FIM!</div>';
 }
 
 function confirma(){
-    alert("confirma em");
+    let phase = phases[etapaAtual];
+    let votoConfirmado = false;
+
+    if(votoBranco === true){
+        votoConfirmado = true;
+    } else if(numero.length === phase.numeros){
+        votoConfirmado = true;
+    }
+
+    if(votoConfirmado){
+        etapaAtual++;
+        if(phases[etapaAtual] !== undefined){
+            startPhases();
+        } else{
+            telaFim();
+        }
+    }
 }
 
 startPhases();
